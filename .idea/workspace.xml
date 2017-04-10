@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46e8eb73-c414-4ffa-aaeb-57dbaa7539bc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Remove_String_Spaces.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/kata" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/replace" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="46e8eb73-c414-4ffa-aaeb-57dbaa7539bc" name="Default" comment="" />
     <ignored path="CodeWars.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -46,6 +40,7 @@
         <option value="$PROJECT_DIR$/bin/kata" />
         <option value="$PROJECT_DIR$/Befunge_Interpreter.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Fibo_akin.php" />
       </list>
     </option>
   </component>
@@ -182,12 +177,12 @@
       <option name="presentableId" value="Default" />
       <updated>1491418284829</updated>
       <workItem from="1491418286048" duration="13265000" />
-      <workItem from="1491591156273" duration="47807000" />
+      <workItem from="1491591156273" duration="53134000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61072000" />
+    <option name="totallyTimeSpent" value="66399000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="875" extended-state="0" />
@@ -285,14 +280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pascal_s_Triangle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/M. K. Čiurlionis - Simfoninės poemos/playlist.m3u">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -325,10 +312,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Fibo_akin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pascal_s_Triangle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Befunge_Interpreter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="308" column="1" selection-start-line="308" selection-start-column="1" selection-end-line="308" selection-end-column="1" />
+        <state relative-caret-position="48">
+          <caret line="279" column="0" selection-start-line="279" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
           <folding />
         </state>
       </provider>
