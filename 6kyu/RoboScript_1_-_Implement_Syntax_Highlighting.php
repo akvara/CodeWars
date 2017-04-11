@@ -57,18 +57,12 @@ function close_span_if_needed(string $command, string $prev, string &$output)
 
     if (is_numeric($command) && is_numeric($prev)) return;
 
-//    if (in_array($command, ["(", ")"]) && in_array($prev, ["(", ")"])) return;
-
     if (in_array($prev, ["(", ")"])) return;
 
     close_span($output);
 
     return;
 }
-
-//function same($a, $b, compare_func) {
-//  return compare_func($a) === compare_func($b)
-//}
 
 
 // ***** Tests *****
