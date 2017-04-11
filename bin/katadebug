@@ -1,0 +1,14 @@
+#!/bin/bash
+#!/bin/bash
+name=""
+
+for i in $*; do
+    if [ "$name" != "" ]; then
+        name=$name"_"
+    fi
+    name=$name$i
+done
+
+number=${name//#}
+
+echo "$number"
