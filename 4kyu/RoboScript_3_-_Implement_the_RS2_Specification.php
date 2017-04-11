@@ -293,11 +293,4 @@ assertEquals("    *****   *****   *****\r\n    *   *   *   *   *   *\r\n    *   
 
 echo PHP_EOL;
 
-//$input = "F15RF3L";
-
-//$input = "(R(F5))5";
-
-//echo read_input($input);
-
-//echo read_block($input);
 

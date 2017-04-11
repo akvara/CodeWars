@@ -21,7 +21,7 @@ function highlight(string $code): string {
         $prev = $command;
     }
 
-    if (!in_array($prev, ["", ")"])) close_span($output);
+    if (!in_array($prev, ["", ")", "("])) close_span($output);
 
     return $output;
 }
@@ -102,5 +102,6 @@ assertEquals("<span style=\"color: pink\">F</span><span style=\"color: orange\">
 //echo "Your code with syntax highlighting: " . highlight("FFFR345F2LL") . "\r\n";
 assertEquals("<span style=\"color: pink\">FFF</span><span style=\"color: green\">R</span><span style=\"color: orange\">345</span><span style=\"color: pink\">F</span><span style=\"color: orange\">2</span><span style=\"color: red\">LL</span>", highlight("FFFR345F2LL"));
 assertEquals("<span style=\"color: green\">RRRRR</span>(<span style=\"color: pink\">F</span><span style=\"color: orange\">45</span><span style=\"color: red\">L</span><span style=\"color: orange\">3</span>)<span style=\"color: pink\">F</span><span style=\"color: orange\">2</span>", highlight("RRRRR(F45L3)F2"));
+assertEquals("Expected: '<span style=\"color: orange\">00172</span><span style=\"color: red\">L</span><span style=\"color: orange\">873583</span><span style=\"color: red\">L</span>(<span style=\"color: orange\">26324</span><span style=\"color: pink\">F</span><span style=\"color: orange\">08</span><span style=\"color: green\">R</span><span style=\"color: orange\">14139</span><span style=\"color: green\">R</span><span style=\"color: orange\">20255</span><span style=\"color: red\">L</span>)<span style=\"color: orange\">697</span><span style=\"color: red\">L</span><span style=\"color: orange\">23431</span>('", highlight("00172L873583L(26324F08R14139R20255L)697L23431("));
 
 echo PHP_EOL;

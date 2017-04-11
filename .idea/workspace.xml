@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46e8eb73-c414-4ffa-aaeb-57dbaa7539bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/4kyu/RoboScript_3_-_Implement_the_RS2_Specification.php" afterPath="$PROJECT_DIR$/4kyu/RoboScript_3_-_Implement_the_RS2_Specification.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/6kyu/RoboScript_1_-_Implement_Syntax_Highlighting.php" afterPath="$PROJECT_DIR$/6kyu/RoboScript_1_-_Implement_Syntax_Highlighting.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.html" afterPath="$PROJECT_DIR$/test.html" />
     </list>
     <ignored path="CodeWars.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,11 +25,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sum_Strings_as_Numbers.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Sum_Strings_as_Numbers.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoboScript_3_-_Implement_the_RS2_Specification.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/4kyu/RoboScript_3_-_Implement_the_RS2_Specification.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="283" column="0" selection-start-line="283" selection-start-column="0" selection-end-line="285" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="46" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -63,11 +94,13 @@
         <option value="$PROJECT_DIR$/RoboScript_2_-_Implement_the_RS1_Specification.php" />
         <option value="$PROJECT_DIR$/bin/katadebug" />
         <option value="$PROJECT_DIR$/bin/kata" />
-        <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/RoboScript_1_-_Implement_Syntax_Highlighting.php" />
-        <option value="$PROJECT_DIR$/6kyu/RoboScript_1_-_Implement_Syntax_Highlighting.php" />
         <option value="$PROJECT_DIR$/RoboScript_3_-_Implement_the_RS2_Specification.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/6kyu/RoboScript_1_-_Implement_Syntax_Highlighting.php" />
+        <option value="$PROJECT_DIR$/4kyu/RoboScript_3_-_Implement_the_RS2_Specification.php" />
+        <option value="$PROJECT_DIR$/Sum_Strings_as_Numbers.php" />
       </list>
     </option>
   </component>
@@ -265,12 +298,12 @@
       <updated>1491418284829</updated>
       <workItem from="1491418286048" duration="13265000" />
       <workItem from="1491591156273" duration="53134000" />
-      <workItem from="1491827753495" duration="43759000" />
+      <workItem from="1491827753495" duration="47329000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110158000" />
+    <option name="totallyTimeSpent" value="113728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="875" extended-state="0" />
@@ -401,56 +434,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/6kyu/RoboScript_1_-_Implement_Syntax_Highlighting.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-581">
-          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-          <folding>
-            <marker date="1491931186035" expanded="true" signature="2425:2436" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="2461:2474" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="2499:2511" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="2536:2547" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="2572:2585" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="2610:2620" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="2645:2656" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="2681:2694" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3173:3184" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3211:3223" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3248:3261" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3288:3299" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3324:3337" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3362:3372" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3442:3454" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3484:3495" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3520:3533" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3559:3569" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3594:3607" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3633:3644" ph="..." />
-            <marker date="1491931186035" expanded="true" signature="3669:3682" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/5kyu/RoboScript_2_-_Implement_the_RS1_Specification.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1950">
           <caret line="130" column="1" selection-start-line="2" selection-start-column="0" selection-end-line="130" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#4;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#5;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -470,18 +458,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/4kyu/RoboScript_3_-_Implement_the_RS2_Specification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="164" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="46" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6kyu/RoboScript_1_-_Implement_Syntax_Highlighting.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="66" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding>
+            <marker date="1491935990207" expanded="true" signature="2430:2441" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="2466:2479" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="2504:2516" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="2541:2552" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="2577:2590" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="2615:2625" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="2650:2661" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="2686:2699" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3178:3189" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3216:3228" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3253:3266" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3293:3304" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3329:3342" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3367:3377" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3447:3459" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3489:3500" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3525:3538" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3564:3574" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3599:3612" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3638:3649" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3674:3687" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3770:3783" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3812:3822" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3847:3860" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3890:3900" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3926:3939" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="3968:3979" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4004:4017" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4043:4055" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4080:4093" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4122:4134" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4159:4172" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4201:4211" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4237:4250" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4277:4287" ph="..." />
+            <marker date="1491935990207" expanded="true" signature="4312:4325" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4kyu/RoboScript_3_-_Implement_the_RS2_Specification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="283" column="0" selection-start-line="283" selection-start-column="0" selection-end-line="285" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sum_Strings_as_Numbers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
           <folding />
         </state>
       </provider>
