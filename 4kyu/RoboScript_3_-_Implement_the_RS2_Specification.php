@@ -190,21 +190,6 @@ function assertEquals($expect, $var) {
     return false;
 }
 
-function assertInstructionIs(string $expectCommand, int $expectRepeat, Instruction $var) {
-    if ($var->command === $expectCommand && $var->repeat === $expectRepeat) {
-        echo ".";
-        return true;
-    }
-
-    echo "\033[01;31m!\033[0m" . PHP_EOL;
-    echo "---Expected---" . PHP_EOL;
-    echo  "$expectCommand$expectRepeat" . PHP_EOL;
-    echo "-----Got------" . PHP_EOL;
-    echo  "$var->command$var->repeat" . PHP_EOL;
-
-    return false;
-}
-
 // ***** Unit tests *****
 
 function test_rotate()
