@@ -1,40 +1,10 @@
 <?php
 
-$BRACES = [
-    '(' => ')',
-    '[' => ']',
-    '{' => '}'
-];
-
 function validBraces($braces){
-    global $BRACES;
-    if (strlen($braces) === 0) return true;
+    $count = 1;
+    while ($count) $braces = str_replace(['()', '[]', '{}'], '', $braces, $count);
 
-    if (array_key_exists($braces[0], $BRACES)) {
-        $end = findClosingBrace(substr($braces, 1), $braces[0], $BRACES[$braces[0]]);
-        if ($end === false) return false;
-        $inside = validBraces(substr($braces, 1, $end ));
-
-        return $inside && validBraces(substr($braces, $end + 2));
-    }
-
-    return false;
-}
-
-function findClosingBrace($input, $openingBrace, $closingBrace) {
-    $open = 1;
-    $i = 0;
-    while ($i < strlen($input)) {
-        if ($input[$i] === $openingBrace) {
-            $open++;
-        }
-        if ($input[$i] === $closingBrace) {
-            $open--;
-            if ($open === 0) return $i;
-        }
-        $i++;
-    }
-    return false;
+    return $braces === '';
 }
 
 // ***** Tests *****
@@ -60,5 +30,6 @@ assertEquals(true, validBraces( "(){}[]" ));
 assertEquals(false, validBraces( "(}" ));
 assertEquals(false, validBraces( "[(])" ));
 assertEquals(true, validBraces( "([{}])" ));
+assertEquals(false, validBraces(")()("));
 
 echo PHP_EOL;
