@@ -15,6 +15,15 @@ name=$name".php"
 
 if [ ! -f $name ]; then
     echo "<?php" > $name
+    echo "" >> $name
+    echo "include_once __DIR__.'/vendor/autoload.php';" >> $name
+    echo "use PHPUnit\Framework\TestCase;" >> $name
+    echo "" >> $name
+    echo "" >> $name
+    echo "" >> $name
+    echo "\$t = new xxxTestCases();" >> $name
+    echo "\$t->testBasics();" >> $name
+    echo "" >> $name
     echo $name created.
 else
     echo $name already exists!
