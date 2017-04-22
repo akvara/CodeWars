@@ -10,6 +10,7 @@ done
 
 name=${name//#}
 name=${name//\'/\_}
+name=${name//:/}
 name=$name".php"
 
 if [ ! -f $name ]; then
