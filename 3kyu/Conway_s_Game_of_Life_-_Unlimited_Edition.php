@@ -4,13 +4,9 @@ include_once __DIR__.'/vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
 
 function get_generation(array $cells, int $generations): array {
-
-//    var_dump($generations);
-//    var_dump($cells);
-
     $new_gen = $cells;
     for ($g = 1; $g <= $generations; $g++) {
-        $new_gen = truncate(one_generation($cells));
+        $new_gen = truncate(one_generation($new_gen));
     }
     return $new_gen;
 }
@@ -41,7 +37,7 @@ function truncate(array $cells): array {
         }
         $truncated[] = $row;
     }
-
+    if (count($truncated) === 0) return [[]];
     return $truncated;
 }
 
@@ -100,6 +96,11 @@ function count_living_neighbours($cells, $x, $y): int {
         is_living($cells, $x+1, $y+1);
 }
 
+
+
+
+// Helpers
+
 function htmlize($cells) {
     $out = "";
     foreach ($cells as $row) {
@@ -110,6 +111,19 @@ function htmlize($cells) {
     }
     return $out;
 }
+
+function htmlize_neighbours($cells)
+{
+    for ($y = 0; $y < count($cells); $y++) {
+        for ($x = 0; $x < count($cells[0]); $x++) {
+            echo count_living_neighbours($cells, $x, $y);
+        }
+        echo PHP_EOL;
+    }
+    echo PHP_EOL;
+}
+
+// Tests
 
 class ConwaysGameOfLifeUnlimitedEditionTest extends TestCase {
     public function testExample() {
@@ -124,37 +138,9 @@ class ConwaysGameOfLifeUnlimitedEditionTest extends TestCase {
             [1, 1, 0]
         ], 1));
     }
-
-    public function test0Gen() {
-        // Basic Glider Test (0 Generation)
-        $this->assertEquals([
-            [1, 0, 0],
-            [0, 1, 1],
-            [1, 1, 0]
-        ], get_generation([
-            [1, 0, 0],
-            [0, 1, 1],
-            [1, 1, 0]
-        ], 0));
-    }
-
-    public function test2Gen() {
-        // Basic Glider Test (2 Generation)
-        $this->assertEquals([
-            [1, 0, 1],
-            [0, 1, 1],
-            [0, 1, 0]
-        ], get_generation([
-            [1, 0, 0],
-            [0, 1, 1],
-            [1, 1, 0]
-        ], 0));
-    }
 }
 $a = new ConwaysGameOfLifeUnlimitedEditionTest();
-//$a->testExample();
-//$a->test0Gen();
-//$a->test2Gen();
+$a->testExample();
 
 $cells = [
     [1, 0, 0],
@@ -162,19 +148,4 @@ $cells = [
     [1, 1, 0]
 ];
 
-//for ($y = -1; $y <= count($cells); $y++) {
-//    for ($x = -1; $x <= count($cells[0]); $x++) {
-for ($y = 0; $y < count($cells); $y++) {
-    for ($x = 0; $x < count($cells[0]); $x++) {
-        echo count_living_neighbours($cells, $x, $y);
-    }
-    echo PHP_EOL;
-}
-echo PHP_EOL;
-
-
-//
-//echo htmlize($cells);
-//echo htmlize(get_generation($cells, 1));
-
-//var_dump(get_generation($cells, 1));
+echo htmlize(get_generation($cells, 2));
