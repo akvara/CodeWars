@@ -1,4 +1,5 @@
 <?php
+
 function sum_strings($a, $b) {
     $extra = 0;
     $res = '';
