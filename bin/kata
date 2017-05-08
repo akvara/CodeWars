@@ -21,7 +21,7 @@ if [ ! -f $name ]; then
     echo "" >> $name
     echo "" >> $name
     echo "" >> $name
-    echo "\$t = new xxxTestCases();" >> $name
+    echo "\$t = new MyTestCases();" >> $name
     echo "\$t->testBasics();" >> $name
     echo "" >> $name
     echo $name created.
