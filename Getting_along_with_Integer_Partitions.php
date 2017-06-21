@@ -4,65 +4,73 @@ include_once __DIR__.'/vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
 
 function part($n) {
-    $known[1] = [1];
-    for ($x = 2; $x <= $n; $x++) {
-        $res = [$x];
-        $res[] = array_merge([$x - 1], $known[$x - 1]);
-        $known[$x] = $res;
-    }
-    echo stringify_array($known[$n]) . PHP_EOL;
-//    [2], [1, 1]
-//    [3], [2, 1], [1, 1, 1]
-//    [4], [3,1], [2,2], [2,1,1], [1,1,1,1]
-//    [5],[4,1],[3,2],[3,1,1],[2,2,1],[2,1,1,1],[1,1,1,1,1]]
+/*
+    $prod = [$n];
 
-//    var_dump($known);
-//    $prod = prod($known);
-//    var_dump($prod);
-//    return sprintf("Range: %d Average: %01.2f Median: %01.2f", calc_range($prod), ave($prod), median($prod));
+    for ($i = 1; $i <= intdiv($n, 2); $i++) {
+        for ($j = $i; $j <= $n-$i; $j++) {
+            $prod[] = $i * $j;
+        }
+    }
+    sort($prod);
+*/
+    $known[1] = [[1]];
+    for ($i = 2; $i <= $n; $i++) {
+        $known[$i] = [];
+        $tmp = [];
+        for ($j = 1; $j <= intdiv($i, 2); $j++) {
+            $tmp[] = $j * ($i-$j) ;
+        }
+        $known[$i][] = $tmp;
+    }
+
+    echo "E: " . stringify_array($known) . PHP_EOL;
+//    $prod = prod($known[$n]);
+//    echo "Easy: " . stringify_array(array_values(array_unique($prod))) . PHP_EOL;
+
+
+    $known[1] = [[1]];
+    for ($i = 2; $i <= $n; $i++) {
+        $known[$i] = [];
+        $tmp = [];
+        for ($j = 1; $j <=intdiv($i ,2); $j++) {
+            $tmp = array_merge($tmp, multiply_set($known, $j, $i-$j));
+            $tmp = array_map("unserialize", array_unique(array_map("serialize", $tmp )));
+        }
+        $known[$i] = array_merge($tmp, [[$i]]);
+    }
+    $prod = prod($known[$n]);
+
+    echo "Hard: " . stringify_array(array_values($prod)) . PHP_EOL;
+
+    return sprintf("Range: %d Average: %01.2f Median: %01.2f", calc_range($prod), ave($prod), median($prod));
 }
 
-function all_ones($arr) {
-    $level1 = $arr;
-    echo "0: ". stringify_array($level1) . PHP_EOL;
-
-    for ($i = 1; $i < count($arr); $i++) {
-        $level1 = array_slice($level1, 0, count($level1) - 1);
-        $level1[0]++;
-        echo "1: ". stringify_array($level1) . PHP_EOL;
-        $increase_position = 1;
-        $level2 = array_slice($level1, 0, count($level1) - 1);
-//        echo "level 2: ". stringify_array($level1) . PHP_EOL;
-
-        while ($increase_position < count($level2) && $level2[$increase_position] < $level2[$increase_position - 1]) {
-            $level3 = $level2;
-            $level3[$increase_position]++;
-            echo "3: ". stringify_array($level3) . PHP_EOL;
-
-            while (count($level3) > $increase_position){
-                $level3[$increase_position]++;
-//                $level3 = array_slice($level3, 0, count($level3) - 1);
-//
-                echo stringify_array($level3) . PHP_EOL;
-//
-                $increase_position++;
-            }
-            $level3 = array_slice($level3, 0, count($level3) - 1);
+function multiply_set($known, $a, $b){
+    echo "$a x $b" . ", ";
+    $res = [];
+    foreach ($known[$a] as $set_a) {
+        foreach ($known[$b] as $set_b) {
+            $tmp = array_merge($set_a, $set_b);
+            array_multisort($tmp );
+            $res[] = $tmp;
         }
-
-//
-//        for ($j = 1; $j < count($level1)- 2; $j++) {
-//            $level2 = array_slice($level1, 0, count($level1) - 1);
-//            $level2[$j]++;
-//            echo stringify_array($level2) . PHP_EOL;
-//        }
     }
+    return $res;
 }
 
 function prod($arr) {
-    $res = 1;
-    foreach ($arr as $item) $res *= $item;
-    return [$res];
+    $res = [];
+
+    foreach ($arr as $enum) {
+        $prod = 1;
+        foreach ($enum as $item) {
+            $prod *= $item;
+        }
+        $res[] = $prod;
+    }
+    sort($res);
+    return array_values(array_unique($res));
 }
 
 function calc_range($arr) {
@@ -74,17 +82,93 @@ function ave($arr) {
 }
 
 function median($arr) {
-    $count = count($arr); //total numbers in array
-    $middleval = floor(($count-1)/2); // find the middle value, or the lowest middle value
-    if($count % 2) { // odd number, middle is the median
+    $count = count($arr);
+    $middleval = floor(($count - 1) / 2);
+    if($count % 2) {
         $median = $arr[$middleval];
-    } else { // even number, calculate avg of 2 medians
+    } else {
         $low = $arr[$middleval];
-        $high = $arr[$middleval+1];
-        $median = (($low+$high)/2);
+        $high = $arr[$middleval + 1];
+        $median = (($low + $high) / 2);
     }
     return $median;
 }
+
+/*function part($n) {
+//    $start = microtime(true);
+    $prod = [];
+    $known[1] = [[1]];
+    for ($i = 2; $i <= $n; $i++) {
+        $known[$i] = [];
+        $tmp = [];
+        for ($j = 1; $j <= intdiv($i, 2); $j++) {
+            $prod[] = $j * ($i-$j);
+            $tmp = array_merge($tmp, multiply_set($known, $j, $i-$j));
+            $tmp = array_map("unserialize", array_unique(array_map("serialize", $tmp)));
+        }
+        $known[$i] = $tmp;
+    }
+    $prod = prod($known[$n]);
+//    $time_elapsed_secs = microtime(true) - $start;
+//    $shout = sprintf("N=%d took %0.f", $n, $time_elapsed_secs);
+    sort($prod);
+//    $prod = array_values(array_unique($prod));
+//    echo stringify_array($prod) . PHP_EOL;
+//die;
+//    var_dump($shout);
+
+    return sprintf("Range: %d Average: %01.2f Median: %01.2f", calc_range($prod), ave($prod), median($prod));
+}
+
+function multiply_set(&$known, $a, $b){
+    echo "$a x $b" .PHP_EOL;
+    $res = [];
+    foreach ($known[$a] as $set_a) {
+        foreach ($known[$b] as $set_b) {
+            $tmp = array_merge($set_a, $set_b);
+//echo stringify_array($tmp) . PHP_EOL;
+            array_multisort($tmp);
+            $res[] = $tmp;
+        }
+    }
+    return $res;
+}
+
+function prod($arr) {
+    $res = [];
+
+    foreach ($arr as $enum) {
+        $prod = 1;
+        foreach ($enum as $item) {
+            $prod *= $item;
+        }
+        $res[] = $prod;
+    }
+    sort($res);
+    return array_values(array_unique($res));
+}
+
+function calc_range($arr) {
+    return max($arr) - min($arr);
+}
+
+function ave($arr) {
+    return array_sum($arr) / count($arr);
+}
+
+function median($arr) {
+    $count = count($arr);
+    $middleval = floor(($count - 1) / 2);
+    if($count % 2) {
+        $median = $arr[$middleval];
+    } else {
+        $low = $arr[$middleval];
+        $high = $arr[$middleval + 1];
+        $median = (($low + $high) / 2);
+    }
+    return $median;
+}
+*/
 
 // Debug
 
@@ -107,21 +191,29 @@ class IntPartTestCases extends TestCase {
         $this->assertEquals($expected, $actual);
     }
     public function testPartBasics() {
-//        $this->revTest(part(1), "Range: 0 Average: 1.00 Median: 1.00");
-//        $this->revTest(part(2), "Range: 1 Average: 1.50 Median: 1.50");
-//        $this->revTest(part(3), "Range: 2 Average: 2.00 Median: 2.00");
-//        $this->revTest(part(4), "Range: 3 Average: 2.50 Median: 2.50");
-//        $this->revTest(part(5), "Range: 5 Average: 3.50 Median: 3.50");
-//        $this->revTest(part(6), "Range: 8 Average: 4.75 Median: 4.50");
-//        $this->revTest(part(7), "Range: 11 Average: 6.09 Median: 6.00");
+        $this->revTest(part(1), "Range: 0 Average: 1.00 Median: 1.00");
+        $this->revTest(part(2), "Range: 1 Average: 1.50 Median: 1.50");
+        $this->revTest(part(3), "Range: 2 Average: 2.00 Median: 2.00");
+        $this->revTest(part(4), "Range: 3 Average: 2.50 Median: 2.50");
+        $this->revTest(part(5), "Range: 5 Average: 3.50 Median: 3.50");
+        $this->revTest(part(6), "Range: 8 Average: 4.75 Median: 4.50");
+        $this->revTest(part(7), "Range: 11 Average: 6.09 Median: 6.00");
+        $this->revTest(part(8), "Range: 17 Average: 8.29 Median: 6.50");
     }
 }
 
 $t = new IntPartTestCases();
 //$t->testPartBasics();
+//echo stringify_array(part(7)) . PHP_EOL;
 
-//part(1);
-//part(2);
-//part(3);
 
-all_ones([1, 1, 1, 1, 1, 1, 1]);
+part(8);
+//part(20);
+//part(30);
+//part(35);
+
+for ($i = 1; $i <= 10; $i++) {
+    echo $i . PHP_EOL;
+    part($i);
+    echo PHP_EOL;
+}
