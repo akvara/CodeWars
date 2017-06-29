@@ -4,6 +4,11 @@ def tribonacci(signature,n):
         res.append(res[x - 1] + res[x - 2] + res[x - 3])
     return res[:n]
 
+# Clever:
+# while len(signature) < n:
+#     signature.append(sum(signature[-3:]))
+#
+# return signature[:n]
 
 from KataTestSuite import Test
 Test = Test()
