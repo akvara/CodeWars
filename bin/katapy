@@ -1,11 +1,14 @@
 #!/bin/bash
 name=""
+kata=""
 
 for i in $*; do
     if [ "$name" != "" ]; then
         name=$name"_"
+        kata=$kata" "
     fi
     name=$name$i
+    name=kata=$kata$i
 done
 
 name=${name//#}
@@ -18,10 +21,13 @@ if [ ! -f $name ]; then
     echo "" >> $name
     echo "" >> $name
     echo "" >> $name
-    echo "import unittest" >> $name
+    echo "from KataTestSuite import Test" >> $name
+    echo "test = Test()" >> $name
     echo "" >> $name
     echo "" >> $name
     echo $name created.
+    git add $name
+    git ci -m "$kata"
 else
     echo $name already exists!
 fi
