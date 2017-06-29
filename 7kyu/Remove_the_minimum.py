@@ -5,6 +5,11 @@ def remove_smallest(numbers):
     del numbers[m]
     return numbers
 
+# Clever:
+# def remove_smallest(numbers):
+#     if numbers:
+#         numbers.remove(min(numbers))
+#     return numbers
 
 from KataTestSuite import Test
 Test = Test()
