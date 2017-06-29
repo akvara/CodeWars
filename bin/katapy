@@ -28,7 +28,7 @@ if [ ! -f $name ]; then
     echo "" >> $name
     echo $name created.
     git add $name
-    git ci -m "$kata"
+    git ci -m "[Py] $kata"
 else
     echo $name already exists!
 fi

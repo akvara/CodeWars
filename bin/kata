@@ -1,16 +1,21 @@
 #!/bin/bash
 name=""
+kata=""
 
 for i in $*; do
     if [ "$name" != "" ]; then
         name=$name"_"
+        kata=$kata" "
     fi
     name=$name$i
+    kata=$kata$i
 done
 
 name=${name//#}
 name=${name//\'/\_}
 name=${name//:/}
+name=${name//./}
+name=${name//!/}
 name=$name".php"
 
 if [ ! -f $name ]; then
@@ -25,6 +30,8 @@ if [ ! -f $name ]; then
     echo "\$t->testBasics();" >> $name
     echo "" >> $name
     echo $name created.
+    git add $name
+    git ci -m "[PHP] $kata"
 else
     echo $name already exists!
 fi
