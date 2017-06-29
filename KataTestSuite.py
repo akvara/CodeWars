@@ -1,4 +1,7 @@
 class Test:
+    def describe(self, description):
+        self.doc = description
+
     def assert_equals(self, tobe, isit):
         if tobe == isit:
             print('\x1b[6;30;42m' + 'Ok' + '\x1b[0m')

@@ -8,12 +8,13 @@ for i in $*; do
         kata=$kata" "
     fi
     name=$name$i
-    name=kata=$kata$i
+    kata=$kata$i
 done
 
 name=${name//#}
 name=${name//\'/\_}
 name=${name//:/}
+name=${name//./}
 name=${name//!/}
 name=$name".py"
 
