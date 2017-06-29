@@ -11,6 +11,7 @@ done
 name=${name//#}
 name=${name//\'/\_}
 name=${name//:/}
+name=${name//!/}
 name=$name".py"
 
 if [ ! -f $name ]; then
