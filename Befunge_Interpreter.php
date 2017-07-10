@@ -44,7 +44,7 @@ function main_logic(
     }
 
     if (is_numeric($current)) {
-        array_push($stack, $current);
+        array_push($stack, intval($current));
         return;
     }
 
@@ -68,14 +68,11 @@ function main_logic(
         $b = count($stack) > 0 ? array_pop($stack) : 0;
         array_push($stack, $a);
         array_push($stack, $b);
-
         return;
     }
 
     if ($current === '.') {
-        while (count($stack)) {
-            $output .= array_pop($stack);
-        }
+        $output .= array_pop($stack);
         return;
     }
 
@@ -108,7 +105,6 @@ function main_logic(
         $y = array_pop($stack);
         $x = array_pop($stack);
         $v = array_pop($stack);
-
         $matrix[$y][$x] = chr($v);
         return;
     }
@@ -116,7 +112,7 @@ function main_logic(
     if ($current === 'g') {
         $y = array_pop($stack);
         $x = array_pop($stack);
-        array_push($stack, $matrix[$y][$x]);
+        array_push($stack, ord($matrix[$y][$x]));
         return;
     }
 
@@ -135,7 +131,6 @@ function make2d(string $code): array {
 function two_operands(array &$stack, string $op) {
     $a = array_pop($stack);
     $b = array_pop($stack);
-
     switch($op){
         case "*":
             array_push($stack, $a * $b);
@@ -198,8 +193,6 @@ function interpret(string $code): string {
     $current = $matrix[0][0];
     $string_mode = false;
 
-    $handle = fopen ("php://stdin","r");
-
     while ($current !== "@") {
         main_logic($current, $carret, $stack, $direction, $string_mode, $matrix, $output);
 
@@ -207,12 +200,13 @@ function interpret(string $code): string {
         $current = $matrix[$carret->Y][$carret->X];
     }
 
-    fclose($handle);
-
     return $output;
 }
 
-function step_by_step(string $code): string {
+
+// ***** Debug *****
+
+function step_by_step(string $code, $auto = false): string {
     $output = "";
     $stack = [];
     $direction = '>';
@@ -223,19 +217,23 @@ function step_by_step(string $code): string {
     ];
     $current = $matrix[0][0];
     $string_mode = false;
-
+    $step = 0;
     $handle = fopen ("php://stdin","r");
 
     while ($current !== "@") {
         print_matrix($matrix, $carret);
+        echo "Step: " . $step .  PHP_EOL;
+        echo "y, x: " . $carret->Y . " " . $carret->X .  PHP_EOL;
+        echo "Char: " . $matrix[$carret->Y][$carret->X] .  PHP_EOL;
         print_stack($stack);
-        echo "[" . $output . "]";
-        fgets($handle);
-
+        echo "Output: '" . $output . "'";
+        if ($step > 115) $auto = false;
+        if ($auto) usleep(300000); else fgets($handle);
         main_logic($current, $carret, $stack, $direction, $string_mode, $matrix, $output);
 
         $carret = move($carret, $direction, $matrix);
         $current = $matrix[$carret->Y][$carret->X];
+        $step++;
     }
 
     fclose($handle);
@@ -243,14 +241,12 @@ function step_by_step(string $code): string {
     return $output;
 }
 
-// ***** Debug *****
-
 function isXY(stdClass $a, $x, $y) {
     return $a->X === $x && $a->Y === $y;
 }
 
-
 function print_matrix(array $matrix, stdClass $pos = null) {
+    passthru('clear');
     $y = 0;
     foreach ($matrix as $row) {
         $x = 0;
@@ -267,14 +263,11 @@ function print_matrix(array $matrix, stdClass $pos = null) {
         echo "'";
         echo PHP_EOL;
     }
+    echo "-----PHP-----" . PHP_EOL;
 }
 
 function print_stack(array $stack) {
-    foreach ($stack as $num) {
-        echo ($num > 32 && $num < 127) ? chr($num) : $num;
-        echo " ";
-    }
-    echo PHP_EOL;
+    echo "Stack: [" .  implode($stack, ', ') . "]" . PHP_EOL;
 }
 
 // ***** Tests *****
@@ -340,6 +333,13 @@ function funct_test_several() {
     $cases = [];
     $i = 0;
 
+    $inp = <<<"EOD"
+08>:1-:v v *_$.@
+  ^    _$>\:^
+EOD;
+    $out = '40320';
+    $cases[] = [$inp, $out];
+
     $inp = '64+"!dlroW ,olleH">:#,_@';
     $out = "Hello, World!\n";
     $cases[] = [$inp, $out];
@@ -360,26 +360,31 @@ function funct_test_several() {
     $cases[] = [$inp, $out];
 
     //
-//    $inp = <<<"EOD"
-//>25*"!dlrow ,olleH":v
-//                 v:,_@
-//                 >  ^
-//EOD;
-//    $out = "Hello, world!\n";
-//    $cases[] = [$inp, $out];
-//
-//    //
-//    $inp = <<<"EOD"
-//>              v
-//v  ,,,,,"Hello"<
-//>48*,          v
-//v,,,,,,"World!"<
-//>25*,@
-//EOD;
-//    $out = "Hello World!\n";
-//    $cases[] = [$inp, $out];
+    $inp = <<<"EOD"
+>25*"!dlrow ,olleH":v
+                 v:,_@
+                 >  ^
+EOD;
+    $out = "Hello, world!\n";
+    $cases[] = [$inp, $out];
 
-    // Factorial
+    //
+    $inp = <<<"EOD"
+>              v
+v  ,,,,,"Hello"<
+>48*,          v
+v,,,,,,"World!"<
+>25*,@
+EOD;
+    $out = "Hello World!\n";
+    $cases[] = [$inp, $out];
+
+    // Quine
+    $inp = "01->1# +# :# 0# g# ,# :# 5# 8# *# 4# +# -# _@";
+    $out = "01->1# +# :# 0# g# ,# :# 5# 8# *# 4# +# -# _@";
+    $cases[] = [$inp, $out];
+
+    // Factorial: no &
 //    $inp = <<<"EOD"
 //&>:1-:v v *_$.@
 // ^    _$>\:^
@@ -389,7 +394,7 @@ function funct_test_several() {
 
     // DNA-code
 //    $inp = <<<"EOD"
-// >78*vD
+//>78*vD
 //v$_#>vN
 //7#!@  A
 //3 :v??v
@@ -401,27 +406,30 @@ function funct_test_several() {
 //    $out = "?";
 //    $cases[] = [$inp, $out];
 
-    // Sieve of Eratosthenes
-//    $inp = <<<"EOD"
-//2>:3g" "-!v\  g30          <
-// |!`"O":+1_:.:03p>03g+:"O"`|
-// @               ^  p3\" ":<
-//2 234567890123456789012345678901234567890123456789012345678901234567890123456789
-//EOD;
-//    $out = "Hello!";
-//    $cases[] = [$inp, $out];
 
-    // Quine
-//    $inp = '01->1# +# :# 0# g# ,# :# 5# 8# *# 4# +# -# _@';
-//    $out = "Hello!";
-//    $cases[] = [$inp, $out];
-//
+    // Sieve of Eratosthenes
+    $inp = <<<"EOD"
+2>:3g" "-!v\  g30          <
+ |!`"O":+1_:.:03p>03g+:"O"`|
+ @               ^  p3\" ":<
+2 234567890123456789012345678901234567890123456789012345678901234567890123456789
+EOD;
+
+//2>:3g" "-!v\  g30          <
+// |!`"&":+1_:.:03p>03g+:"&"`|
+// @               ^  p3\" ":<
+//2 2345678901234567890123456789012345678
+//EOD;
+    $out = "2357111317192329313741434753596167717379";
+    $cases[] = [$inp, $out];
+
+
     foreach ($cases as $test) {
         $res = interpret($test[0]);
         if (!compare($res, $test[1])) {
             echo PHP_EOL . sprintf("Expected '%s, got '%s'", $test[1],$res) . PHP_EOL;
             echo "Startin step-bystep mode " . PHP_EOL;
-            step_by_step($test[0]);
+//            step_by_step($test[0]);
             break;
         }
         $i++;
@@ -431,11 +439,13 @@ function funct_test_several() {
 
 // ***** Only here the code comes *****
 
-//unit_test_move();
-//funct_test_string_mode();
-//funct_test_example();
-//funct_test_example2();
-//funct_test_example3();
-//funct_test_put_get();
-
+unit_test_move();
 funct_test_several();
+
+$inp = <<<"EOD"
+2>:3g" "-!v\  g30          <
+ |!`"O":+1_:.:03p>03g+:"O"`|
+ @               ^  p3\" ":<
+2 234567890123456789012345678901234567890123456789012345678901234567890123456789
+EOD;
+step_by_step($inp, true);
